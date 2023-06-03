@@ -292,7 +292,7 @@ CreateThread(function() --[[ System Messages. ]]
         PerformHttpRequest('https://api.prefech.dev/v1/fivem/jdlogs/systemMsg', function(code, res, headers)
             if code == 200 then
 				local rv = json.decode(res)
-				if rv.item.id then
+				if rv and rv.item and rv.item.id then
 					if os.time(os.date("!*t")) - tonumber(rv.item.date) < (7 * 24 * 60 * 60) then
 						if GetResourceKvpString('JD_logs:SystemMessage') ~= rv.item.message then
 							print('^1JD_logs System Message\n^1--------------------^0\n^2'..rv.item.title..'^0\n'..rv.item.message..'\n^1--------------------^0')
